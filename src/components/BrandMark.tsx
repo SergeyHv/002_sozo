@@ -1,20 +1,13 @@
 // Логотип-монограмма SOZO. Рисуется в коде — нет внешних файлов и вопросов
-// о лицензиях. Символика сдержанная: раскрытые руки / чаша, отпускающие
-// светлую точку вверх — образ доверия и освобождения. Без изображения людей
-// и без попыток «нарисовать» Бога.
+// о лицензиях. Сдержанная серифная буква «S» на фирменном бейдже
+// (фон и скругление задаёт CSS-класс .brand-logo). Тот же знак — в favicon
+// и в OG-картинке, для единства бренда.
 
 interface Props {
   size?: number;
 }
 
 export default function BrandMark({ size = 30 }: Props) {
-  const common = {
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: 2,
-    strokeLinecap: "round" as const,
-    strokeLinejoin: "round" as const,
-  };
   return (
     <svg
       width={size}
@@ -23,15 +16,18 @@ export default function BrandMark({ size = 30 }: Props) {
       aria-hidden="true"
       style={{ display: "block" }}
     >
-      {/* раскрытые ладони / чаша */}
-      <path d="M10 26 C10 36 16 40 24 40 C32 40 38 36 38 26" {...common} />
-      <path d="M10 26 L7 21" {...common} />
-      <path d="M38 26 L41 21" {...common} />
-      {/* свет, отпущенный вверх */}
-      <circle cx="24" cy="16" r="4" {...common} />
-      <path d="M24 9 L24 5" {...common} />
-      <path d="M18 12 L15 9" {...common} />
-      <path d="M30 12 L33 9" {...common} />
+      <text
+        x="24"
+        y="25"
+        textAnchor="middle"
+        dominantBaseline="central"
+        fontFamily="'Cormorant Garamond', Georgia, serif"
+        fontWeight={700}
+        fontSize={36}
+        fill="currentColor"
+      >
+        S
+      </text>
     </svg>
   );
 }
