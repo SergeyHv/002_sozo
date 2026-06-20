@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { levels } from "../lib/content";
 import { isUnlocked, isPassed, getResult } from "../lib/progress";
@@ -8,6 +9,10 @@ const ROMAN = ["", "I", "II", "III", "IV", "V", "VI", "VII"];
 
 export default function Home() {
   useProgress();
+
+  useEffect(() => {
+    document.title = "SOZO · путь к свободе от созависимости";
+  }, []);
 
   return (
     <div>
@@ -36,7 +41,15 @@ export default function Home() {
             <div>
               <span className="level-num">Шаг {ROMAN[li + 1]}</span>
               <h2>{level.title}</h2>
-              {level.audience && <div className="audience">{level.audience}</div>}
+              {(() => {
+                const lessons = level.modules.flatMap((m) => m.lessons);
+                const done = lessons.length > 0 && lessons.every((l) => isPassed(l.id));
+                return done ? (
+                  <div className="step-badge">✓ Шаг пройден</div>
+                ) : (
+                  level.audience && <div className="audience">{level.audience}</div>
+                );
+              })()}
             </div>
           </div>
           {level.description && <p className="desc">{level.description}</p>}

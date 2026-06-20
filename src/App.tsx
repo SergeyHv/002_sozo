@@ -2,8 +2,11 @@ import { useEffect } from "react";
 import { HashRouter, Routes, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
 import LessonView from "./components/LessonView";
+import About from "./components/About";
+import Help from "./components/Help";
 import AccountBar from "./components/AccountBar";
 import BrandMark from "./components/BrandMark";
+import FontSizeControl from "./components/FontSizeControl";
 import { supabase, authEnabled } from "./lib/supabase";
 import { initSync } from "./lib/sync";
 import { overallProgress, resetProgress } from "./lib/progress";
@@ -38,15 +41,22 @@ function Header() {
 function Footer() {
   return (
     <footer className="footer">
-      <span>SOZO · Ковчег спасения</span>
-      <button
-        className="linklike"
-        onClick={() => {
-          if (confirm("Сбросить весь прогресс обучения?")) resetProgress();
-        }}
-      >
-        Сбросить прогресс
-      </button>
+      <nav className="footer-links">
+        <Link to="/about">О курсе</Link>
+        <Link to="/help" className="footer-help">
+          Если вам тяжело
+        </Link>
+        <button
+          className="linklike"
+          onClick={() => {
+            if (confirm("Сбросить весь прогресс обучения?")) resetProgress();
+          }}
+        >
+          Сбросить прогресс
+        </button>
+      </nav>
+      <FontSizeControl />
+      <span className="footer-mark">SOZO · Ковчег спасения</span>
     </footer>
   );
 }
@@ -75,6 +85,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/lesson/:lessonId" element={<LessonView />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/help" element={<Help />} />
           <Route path="*" element={<Home />} />
         </Routes>
         <Footer />

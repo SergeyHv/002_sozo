@@ -977,3 +977,215 @@ h3 {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* ── Подвал: ссылки ──────────────────────────────────── */
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.footer-help {
+  color: var(--blue);
+}
+.footer-mark {
+  letter-spacing: 0.06em;
+}
+
+/* ── Верх урока: хлебные крошки + печать ─────────────── */
+.lesson-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+.lesson-top .crumbs {
+  margin-bottom: 18px;
+}
+.print-btn {
+  flex: none;
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+.print-btn:hover {
+  color: var(--accent);
+}
+
+/* ── Страница «Если вам тяжело» ──────────────────────── */
+.help-contacts {
+  margin: 8px 0 24px;
+  display: grid;
+  gap: 12px;
+}
+.help-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--accent-tint);
+  padding: 14px 18px;
+}
+.help-num {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--accent-deep);
+}
+.help-desc {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+/* ── Бейдж «Шаг пройден» на главной ──────────────────── */
+.step-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: var(--ok);
+  padding: 3px 11px;
+  border-radius: 99px;
+  margin: 9px 0 2px;
+  vertical-align: middle;
+}
+
+/* ── Переключатель размера шрифта (доступность) ──────── */
+.a11y-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+.a11y-bar button {
+  font-family: var(--font-display);
+  border: 1px solid var(--line);
+  background: var(--bg-raised);
+  color: var(--ink-soft);
+  border-radius: var(--radius);
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px 9px;
+  transition: border-color 0.18s var(--ease), color 0.18s var(--ease);
+}
+.a11y-bar button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.a11y-bar button.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-tint);
+}
+
+/* Размеры чтения: классы на <body>. */
+body.fs-large {
+  font-size: 19.5px;
+}
+body.fs-large .lesson-body {
+  font-size: 20.5px;
+}
+body.fs-xlarge {
+  font-size: 21px;
+}
+body.fs-xlarge .lesson-body {
+  font-size: 22px;
+}
+
+/* ── Тёмная тема (по настройке системы) ──────────────── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #11201d;
+    --bg-tint: #14241f;
+    --bg-raised: #1a2b27;
+    --ink: #e8efec;
+    --ink-soft: #b4c3bd;
+    --ink-faint: #859790;
+    --line: #2a3d38;
+    --line-soft: #223330;
+    --accent: #5fb1a8;
+    --accent-deep: #7cc4bc;
+    --accent-tint: rgba(95, 177, 168, 0.12);
+    --accent-tint-2: rgba(95, 177, 168, 0.2);
+    --gold: #d4b061;
+    --gold-soft: rgba(212, 176, 97, 0.12);
+    --blue: #9aaedb;
+    --ok: #6cae7d;
+    --locked: #596b65;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px rgba(0, 0, 0, 0.4);
+    --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.35), 0 18px 44px rgba(0, 0, 0, 0.5);
+  }
+  body {
+    background-image:
+      radial-gradient(900px circle at 15% -5%, rgba(95, 177, 168, 0.08), transparent 55%),
+      radial-gradient(800px circle at 100% 8%, rgba(154, 174, 219, 0.06), transparent 50%),
+      radial-gradient(700px circle at 50% 110%, rgba(212, 176, 97, 0.05), transparent 55%);
+  }
+  .option,
+  .reflect-input {
+    background: #14241f;
+  }
+  .level-emblem {
+    background: radial-gradient(circle at 35% 30%, #21332e, #1a2b27);
+  }
+  .btn {
+    color: #0e1c19;
+  }
+  .btn.secondary {
+    color: var(--accent);
+  }
+  .brand-logo {
+    color: #eafaf6;
+  }
+}
+
+/* ── Печать урока (Печать / Сохранить в PDF) ─────────── */
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 12pt;
+  }
+  .site-header,
+  .header-progress,
+  .footer,
+  .lesson-nav,
+  .crumbs,
+  .mentor-row,
+  .mentor-box,
+  .a11y-bar,
+  .print-btn,
+  .quiz button,
+  .reflection button,
+  .reflect-input {
+    display: none !important;
+  }
+  .app {
+    max-width: 100%;
+    padding: 0;
+  }
+  .lesson-body,
+  .quiz,
+  .reflection {
+    animation: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: #fff !important;
+    padding: 0 !important;
+    margin-top: 18pt;
+  }
+  .lesson-body blockquote {
+    color: #222;
+  }
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+}

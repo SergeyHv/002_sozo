@@ -21,9 +21,14 @@ export default function LessonView() {
     [lesson],
   );
 
-  // При переходе на другой урок прокручиваем страницу наверх.
+  // При переходе на другой урок прокручиваем страницу наверх
+  // и обновляем заголовок вкладки браузера.
   useEffect(() => {
     window.scrollTo(0, 0);
+    if (lesson) document.title = `${lesson.title} · SOZO`;
+    return () => {
+      document.title = "SOZO · путь к свободе от созависимости";
+    };
   }, [lesson?.id]);
 
   // Урок без теста И без размышления считается пройденным по факту открытия.
@@ -75,8 +80,17 @@ export default function LessonView() {
   // убирает прежнее содержимое (тест/размышление) и строит новое.
   return (
     <div key={lesson.id}>
-      <div className="crumbs">
-        <Link to="/">Шаги</Link> · {level?.title} · {module?.title}
+      <div className="lesson-top">
+        <div className="crumbs">
+          <Link to="/">Шаги</Link> · {level?.title} · {module?.title}
+        </div>
+        <button
+          className="print-btn linklike"
+          onClick={() => window.print()}
+          title="Распечатать или сохранить урок в PDF"
+        >
+          Печать / PDF
+        </button>
       </div>
 
       <article
