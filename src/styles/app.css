@@ -1,29 +1,45 @@
 :root {
-  /* Палитра SOZO — спокойная «исцеляющая» зелёно-бирюзовая,
-     родственная синему «Ковчега спасения», но со своим характером. */
-  --bg: #eef2f1;
-  --bg-raised: #f8fbfa;
-  --ink: #1d2a28;
-  --ink-soft: #45544f;
-  --ink-faint: #7e8c87;
-  --line: #d4e0dc;
+  /* ── Палитра SOZO ──────────────────────────────────────
+     Спокойная «исцеляющая» зелёно-бирюзовая, родственная синему
+     «Ковчега спасения», но со своим характером. Цвет с глубиной:
+     несколько оттенков чернил, тёплая бумага, сдержанные тинты. */
+  --bg: #e9efed;
+  --bg-tint: #e3ebe8;
+  --bg-raised: #fbfdfc;
+  --ink: #18221f; /* почти чёрный с зелёным подтоном */
+  --ink-soft: #41504b;
+  --ink-faint: #79877f;
+  --line: #d3e0db;
+  --line-soft: #e2ebe7;
   --accent: #2f6f6a; /* основной зелёно-бирюзовый */
-  --accent-deep: #245752;
-  --gold: #b08828;
-  --blue: #3b4d71; /* связь с «Ковчегом спасения» — для блоков размышления */
-  --ok: #3d6b4a;
+  --accent-deep: #234f4b;
+  --accent-tint: rgba(47, 111, 106, 0.08);
+  --accent-tint-2: rgba(47, 111, 106, 0.14);
+  --gold: #a9842c; /* для акцентов Писания */
+  --gold-soft: rgba(169, 132, 44, 0.1);
+  --blue: #3b4d71; /* связь с «Ковчегом спасения» — блоки размышления */
+  --ok: #3a6647;
   --locked: #a7b4af;
-  --shadow: 0 1px 2px rgba(29, 42, 40, 0.06), 0 8px 28px rgba(29, 42, 40, 0.08);
+  --shadow-sm: 0 1px 2px rgba(24, 34, 31, 0.05);
+  --shadow: 0 1px 2px rgba(24, 34, 31, 0.05), 0 10px 30px rgba(24, 34, 31, 0.07);
+  --shadow-lift: 0 2px 4px rgba(24, 34, 31, 0.06), 0 16px 40px rgba(24, 34, 31, 0.1);
 
   --font-display: "Cormorant Garamond", Georgia, serif;
   --font-body: "Spectral", Georgia, serif;
 
-  --radius: 4px;
-  --maxw: 760px;
+  --radius: 5px;
+  --radius-lg: 10px;
+  --maxw: 720px;
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
@@ -35,26 +51,43 @@ body,
 
 body {
   background: var(--bg);
-  /* лёгкая бумажная текстура из градиентов */
-  background-image: radial-gradient(
-      circle at 20% 10%,
-      rgba(47, 111, 106, 0.05),
-      transparent 40%
-    ),
-    radial-gradient(circle at 85% 90%, rgba(36, 87, 82, 0.05), transparent 45%);
+  /* Мягкая «бумажная» атмосфера: едва уловимые световые washes,
+     которые дают глубину, но не отвлекают от чтения. */
+  background-image:
+    radial-gradient(900px circle at 15% -5%, rgba(47, 111, 106, 0.07), transparent 55%),
+    radial-gradient(800px circle at 100% 8%, rgba(59, 77, 113, 0.05), transparent 50%),
+    radial-gradient(700px circle at 50% 110%, rgba(169, 132, 44, 0.05), transparent 55%);
+  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 18px;
-  line-height: 1.7;
+  line-height: 1.72;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent-tint-2);
+  color: var(--ink);
 }
 
 a {
   color: var(--accent);
   text-decoration: none;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.18s var(--ease);
 }
 a:hover {
   text-decoration: underline;
+  color: var(--accent-deep);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 h1,
@@ -62,43 +95,44 @@ h2,
 h3 {
   font-family: var(--font-display);
   font-weight: 600;
-  line-height: 1.15;
+  line-height: 1.12;
   color: var(--ink);
-  letter-spacing: 0.01em;
+  letter-spacing: 0.006em;
 }
 
 .app {
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 0 24px 96px;
+  padding: 0 24px 110px;
 }
 
 /* ── Шапка ───────────────────────────────────────────── */
 .site-header {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 28px 0 22px;
+  padding: 30px 0 22px;
   border-bottom: 1px solid var(--line);
-  margin-bottom: 36px;
+  margin-bottom: 40px;
   flex-wrap: wrap;
 }
 .brand {
   font-family: var(--font-display);
   font-size: 30px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   color: var(--ink);
 }
 .brand small {
   display: block;
   font-family: var(--font-body);
-  font-size: 12px;
-  letter-spacing: 0.12em;
+  font-size: 11.5px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-faint);
-  margin-top: 2px;
+  margin-top: 3px;
+  font-weight: 500;
 }
 .brand a {
   color: inherit;
@@ -107,23 +141,25 @@ h3 {
   text-decoration: none;
 }
 .header-progress {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--ink-soft);
   text-align: right;
+  letter-spacing: 0.02em;
 }
 .bar {
   width: 160px;
-  height: 6px;
+  height: 5px;
   background: var(--line);
   border-radius: 99px;
   overflow: hidden;
-  margin-top: 6px;
+  margin-top: 7px;
 }
 .bar > span {
   display: block;
   height: 100%;
   background: linear-gradient(90deg, var(--gold), var(--accent));
-  transition: width 0.4s ease;
+  border-radius: 99px;
+  transition: width 0.6s var(--ease);
 }
 
 /* ── Логотип-монограмма в шапке ──────────────────────── */
@@ -143,8 +179,14 @@ h3 {
   display: grid;
   place-items: center;
   color: #f4faf8;
-  background: var(--accent);
-  border-radius: 12px;
+  background: linear-gradient(155deg, var(--accent), var(--accent-deep));
+  border-radius: 13px;
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+.brand-link:hover .brand-logo {
+  transform: translateY(-1px) rotate(-2deg);
+  box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 .brand-text {
   display: block;
@@ -152,99 +194,117 @@ h3 {
 }
 @media (max-width: 600px) {
   .brand-logo {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
   }
   .brand {
-    font-size: 26px;
+    font-size: 25px;
   }
 }
 
 /* ── Блок значения слова σώζω ────────────────────────── */
 .sozo-meaning {
+  position: relative;
   border: 1px solid var(--line);
-  border-left: 4px solid var(--accent);
-  border-radius: var(--radius);
-  background: var(--bg-raised);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(180deg, var(--bg-raised), rgba(251, 253, 252, 0.6));
   box-shadow: var(--shadow);
-  padding: 18px 22px;
-  margin: 0 0 36px;
+  padding: 22px 26px 22px 28px;
+  margin: 0 0 40px;
+  overflow: hidden;
+}
+.sozo-meaning::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, var(--accent), var(--gold));
 }
 .sozo-word {
   display: block;
   font-family: var(--font-display);
-  font-size: 22px;
-  letter-spacing: 0.04em;
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
   color: var(--accent-deep);
-  margin-bottom: 4px;
+  margin-bottom: 5px;
 }
 .sozo-meaning p {
   margin: 0;
   color: var(--ink-soft);
-  font-size: 16px;
+  font-size: 16.5px;
+  font-style: italic;
 }
 
 /* ── Главная: список шагов ───────────────────────────── */
 .lead {
-  font-size: 20px;
+  font-size: 21px;
+  line-height: 1.6;
   color: var(--ink-soft);
-  max-width: 62ch;
-  margin: 0 0 28px;
+  max-width: 60ch;
+  margin: 8px 0 30px;
+  font-feature-settings: "onum" 1, "pnum" 1, "kern" 1, "liga" 1;
 }
 
 .level-card {
+  position: relative;
   background: var(--bg-raised);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
-  padding: 26px 28px;
-  margin-bottom: 22px;
+  padding: 28px 30px;
+  margin-bottom: 24px;
+  transition: box-shadow 0.35s var(--ease), border-color 0.35s var(--ease), transform 0.35s var(--ease);
 }
-.level-head {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  margin-bottom: 4px;
+.level-card:hover {
+  box-shadow: var(--shadow-lift);
+  border-color: var(--line-soft);
 }
 .level-num {
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: 14px;
   color: var(--accent);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
 }
 .level-card h2 {
-  font-size: 27px;
+  font-size: 29px;
   margin: 0;
 }
 .audience {
   display: inline-block;
-  font-size: 13px;
-  letter-spacing: 0.04em;
+  font-size: 12.5px;
+  letter-spacing: 0.05em;
   color: var(--accent-deep);
-  background: rgba(47, 111, 106, 0.1);
-  padding: 2px 10px;
+  background: var(--accent-tint);
+  border: 1px solid var(--accent-tint-2);
+  padding: 3px 11px;
   border-radius: 99px;
-  margin: 8px 0 2px;
+  margin: 9px 0 2px;
 }
 .level-card p.desc {
   color: var(--ink-soft);
-  margin: 10px 0 18px;
+  margin: 12px 0 20px;
+  max-width: 62ch;
 }
 
 .module {
-  border-top: 1px solid var(--line);
-  padding-top: 16px;
-  margin-top: 16px;
+  border-top: 1px solid var(--line-soft);
+  padding-top: 18px;
+  margin-top: 18px;
 }
 .module h3 {
-  font-size: 20px;
+  font-size: 21px;
   margin: 0 0 4px;
 }
 .module .mdesc {
   font-size: 15px;
   color: var(--ink-faint);
-  margin: 0 0 12px;
+  margin: 0 0 14px;
+  font-style: italic;
 }
 
 .lesson-list {
@@ -256,11 +316,18 @@ h3 {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 9px 0;
-  border-bottom: 1px dotted var(--line);
+  padding: 10px 10px 10px 8px;
+  margin: 0 -10px 0 -8px;
+  border-radius: var(--radius);
+  border-bottom: 1px solid var(--line-soft);
+  transition: background 0.22s var(--ease), transform 0.22s var(--ease);
 }
 .lesson-row:last-child {
   border-bottom: none;
+}
+.lesson-row:not(.locked):hover {
+  background: var(--accent-tint);
+  transform: translateX(3px);
 }
 .lesson-row .marker {
   flex: none;
@@ -269,14 +336,25 @@ h3 {
   border-radius: 99px;
   display: grid;
   place-items: center;
-  font-size: 14px;
+  font-size: 13px;
   border: 1.5px solid var(--line);
   color: var(--ink-faint);
+  background: var(--bg-raised);
+  transition: transform 0.22s var(--ease), background 0.22s var(--ease), border-color 0.22s var(--ease);
+}
+.lesson-row:not(.locked):hover .marker {
+  transform: scale(1.08);
+  border-color: var(--accent);
+  color: var(--accent);
 }
 .lesson-row.passed .marker {
   background: var(--ok);
   border-color: var(--ok);
   color: #fff;
+}
+.lesson-row.passed:hover .marker {
+  color: #fff;
+  border-color: var(--ok);
 }
 .lesson-row.locked .marker {
   color: var(--locked);
@@ -288,8 +366,9 @@ h3 {
   color: var(--locked);
 }
 .lesson-row .score {
-  font-size: 13px;
+  font-size: 12.5px;
   color: var(--ink-faint);
+  letter-spacing: 0.02em;
 }
 .lesson-row.locked {
   cursor: default;
@@ -297,120 +376,169 @@ h3 {
 
 /* ── Урок ────────────────────────────────────────────── */
 .crumbs {
-  font-size: 14px;
+  font-size: 13.5px;
   color: var(--ink-faint);
-  margin-bottom: 18px;
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
 }
 .lesson-body {
   font-size: 19px;
+  line-height: 1.74;
 }
 .lesson-body h1 {
-  font-size: 38px;
-  margin: 0 0 24px;
+  font-size: 40px;
+  line-height: 1.08;
+  margin: 0 0 10px;
+  letter-spacing: -0.005em;
+}
+/* Первый абзац урока — лёгкий «ввод», крупнее и спокойнее. */
+.lesson-body > p:first-of-type {
+  font-size: 21px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 0 0 22px;
 }
 .lesson-body h2 {
-  font-size: 26px;
-  margin: 36px 0 12px;
+  font-size: 27px;
+  margin: 40px 0 12px;
 }
 .lesson-body h3 {
   font-size: 21px;
-  margin: 28px 0 8px;
+  margin: 30px 0 8px;
 }
 .lesson-body p {
-  margin: 0 0 16px;
+  margin: 0 0 17px;
 }
 .lesson-body ul,
 .lesson-body ol {
   padding-left: 1.3em;
-  margin: 0 0 16px;
+  margin: 0 0 17px;
 }
 .lesson-body li {
-  margin: 0 0 6px;
+  margin: 0 0 7px;
 }
+.lesson-body li::marker {
+  color: var(--accent);
+}
+.lesson-body strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+/* Цитаты Писания — благородная обработка с крупной кавычкой. */
 .lesson-body blockquote {
-  margin: 22px 0;
-  padding: 6px 0 6px 22px;
-  border-left: 3px solid var(--gold);
+  position: relative;
+  margin: 26px 0;
+  padding: 4px 0 4px 26px;
+  border-left: 2px solid var(--gold);
+  font-family: var(--font-display);
+  font-size: 23px;
+  line-height: 1.35;
   font-style: italic;
-  color: var(--ink-soft);
+  color: var(--ink);
+}
+.lesson-body blockquote p {
+  margin: 0 0 6px;
 }
 .lesson-body blockquote cite {
   display: block;
+  font-family: var(--font-body);
   font-style: normal;
-  font-size: 15px;
+  font-size: 14px;
   color: var(--accent);
-  margin-top: 6px;
-  letter-spacing: 0.03em;
+  margin-top: 8px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 .lesson-body hr {
   border: none;
   border-top: 1px solid var(--line);
-  margin: 32px 0;
+  margin: 36px 0;
+}
+
+/* ── Деликатная врезка (сноска) ──────────────────────── */
+.lesson-body .callout {
+  background: rgba(59, 77, 113, 0.05);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--blue);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin: 26px 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+.lesson-body .callout p {
+  margin: 0;
 }
 
 /* ── Тест ────────────────────────────────────────────── */
 .quiz {
-  margin-top: 44px;
+  margin-top: 48px;
   background: var(--bg-raised);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
-  padding: 28px 30px;
+  padding: 30px 32px;
 }
 .quiz h2 {
-  margin-top: 0;
+  margin-top: 2px;
+  font-size: 26px;
 }
 .quiz .qtag {
-  font-size: 13px;
-  letter-spacing: 0.16em;
+  font-size: 12px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--accent);
+  font-weight: 500;
 }
 .question {
-  margin: 22px 0;
+  margin: 24px 0;
   padding-bottom: 6px;
 }
 .question .qtext {
   font-weight: 500;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 .option {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  padding: 9px 12px;
+  gap: 11px;
+  padding: 11px 14px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  margin-bottom: 8px;
+  margin-bottom: 9px;
   cursor: pointer;
   background: #fff;
-  transition: border-color 0.15s, background 0.15s;
+  transition: border-color 0.18s var(--ease), background 0.18s var(--ease), transform 0.18s var(--ease);
 }
 .option:hover {
-  border-color: var(--gold);
+  border-color: var(--accent);
+  transform: translateX(2px);
 }
 .option.selected {
   border-color: var(--accent);
-  background: rgba(47, 111, 106, 0.06);
+  background: var(--accent-tint);
 }
 .option.correct {
   border-color: var(--ok);
-  background: rgba(61, 107, 74, 0.08);
+  background: rgba(58, 102, 71, 0.09);
 }
 .option.wrong {
-  border-color: var(--accent);
-  background: rgba(47, 111, 106, 0.1);
+  border-color: #b14b4b;
+  background: rgba(177, 75, 75, 0.07);
 }
 .option input {
   margin-top: 4px;
+  accent-color: var(--accent);
 }
 .explanation {
   font-size: 15px;
+  line-height: 1.55;
   color: var(--ink-soft);
-  background: rgba(176, 136, 40, 0.08);
+  background: var(--gold-soft);
   border-radius: var(--radius);
-  padding: 10px 14px;
-  margin-top: 8px;
+  padding: 11px 15px;
+  margin-top: 9px;
 }
 .explanation b {
   color: var(--ok);
@@ -419,38 +547,51 @@ h3 {
 .btn {
   font-family: var(--font-body);
   font-size: 17px;
+  font-weight: 500;
   border: none;
   border-radius: var(--radius);
-  padding: 11px 26px;
+  padding: 12px 28px;
   cursor: pointer;
   background: var(--accent);
   color: #f4faf8;
-  letter-spacing: 0.02em;
-  transition: background 0.15s;
+  letter-spacing: 0.015em;
+  box-shadow: var(--shadow-sm);
+  transition: background 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
 .btn:hover {
   background: var(--accent-deep);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+.btn:active {
+  transform: translateY(0);
 }
 .btn:disabled {
   background: var(--locked);
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 .btn.secondary {
   background: transparent;
   color: var(--accent);
   border: 1px solid var(--accent);
+  box-shadow: none;
 }
 .btn.secondary:hover {
-  background: rgba(47, 111, 106, 0.06);
+  background: var(--accent-tint);
+  color: var(--accent-deep);
 }
 
 .quiz-result {
   text-align: center;
-  padding: 12px 0 4px;
+  padding: 14px 0 4px;
+  animation: rise 0.5s var(--ease) both;
 }
 .quiz-result .score-big {
   font-family: var(--font-display);
-  font-size: 56px;
+  font-size: 60px;
+  font-weight: 600;
   line-height: 1;
   color: var(--ink);
 }
@@ -465,30 +606,31 @@ h3 {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  margin-top: 40px;
+  margin-top: 44px;
   border-top: 1px solid var(--line);
-  padding-top: 22px;
+  padding-top: 24px;
 }
 .note-locked {
-  background: rgba(47, 111, 106, 0.06);
+  background: var(--accent-tint);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 18px 22px;
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
   color: var(--ink-soft);
   text-align: center;
   margin-top: 40px;
 }
 
 .footer {
-  margin-top: 64px;
-  padding-top: 22px;
+  margin-top: 72px;
+  padding-top: 24px;
   border-top: 1px solid var(--line);
-  font-size: 14px;
+  font-size: 13.5px;
   color: var(--ink-faint);
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 10px;
+  letter-spacing: 0.02em;
 }
 .linklike {
   background: none;
@@ -502,47 +644,42 @@ h3 {
   text-decoration: underline;
 }
 
-@media (max-width: 600px) {
-  body {
-    font-size: 17px;
-  }
-  .lesson-body h1 {
-    font-size: 31px;
-  }
-  .header-progress .bar {
-    width: 120px;
-  }
-}
-
 /* ── Размышление / самопроверка ──────────────────────── */
 .reflection {
-  margin-top: 44px;
+  margin-top: 48px;
   background: var(--bg-raised);
   border: 1px solid var(--line);
   border-left: 4px solid var(--blue);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
-  padding: 28px 30px;
+  padding: 30px 32px;
 }
 .reflection h2 {
   margin-top: 4px;
+  font-size: 26px;
 }
 .reflection .qtag {
   color: var(--blue);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
 }
 .reflection-note {
   font-size: 15px;
+  line-height: 1.55;
   color: var(--ink-soft);
-  background: rgba(59, 77, 113, 0.06);
+  background: rgba(59, 77, 113, 0.05);
   border-radius: var(--radius);
-  padding: 10px 14px;
+  padding: 11px 15px;
   margin: 0 0 18px;
 }
 .reflection-intro {
   color: var(--ink-soft);
+  font-style: italic;
 }
 .reflect-item {
-  margin: 22px 0;
+  margin: 24px 0;
 }
 .reflect-input {
   width: 100%;
@@ -553,27 +690,31 @@ h3 {
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 12px 14px;
-  margin: 8px 0 10px;
+  padding: 13px 15px;
+  margin: 9px 0 10px;
   resize: vertical;
+  transition: border-color 0.18s var(--ease), box-shadow 0.18s var(--ease);
 }
 .reflect-input:focus {
   outline: none;
   border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(59, 77, 113, 0.12);
 }
 .model-answer {
   margin-top: 10px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background: rgba(176, 136, 40, 0.06);
-  padding: 14px 18px;
+  background: var(--gold-soft);
+  padding: 16px 20px;
+  animation: rise 0.45s var(--ease) both;
 }
 .model-label {
-  font-size: 13px;
-  letter-spacing: 0.14em;
+  font-size: 12px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 6px;
+  margin-bottom: 7px;
+  font-weight: 500;
 }
 .model-text p {
   margin: 0 0 10px;
@@ -614,31 +755,39 @@ h3 {
 }
 .rubric-item input {
   margin-top: 4px;
+  accent-color: var(--accent);
 }
 .reflect-done {
   color: var(--ok);
   font-weight: 500;
   margin-top: 8px;
+  animation: rise 0.45s var(--ease) both;
 }
 
 /* ── Эмблемы шагов (SVG) ─────────────────────────────── */
 .level-card-head {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 18px;
   margin-bottom: 6px;
 }
 .level-emblem {
   flex: none;
-  width: 64px;
-  height: 64px;
+  width: 66px;
+  height: 66px;
   display: grid;
   place-items: center;
   border: 1px solid var(--line);
   border-radius: 50%;
-  background: #fff;
+  background:
+    radial-gradient(circle at 35% 30%, #fff, var(--bg-raised));
   color: var(--accent);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: transform 0.4s var(--ease), color 0.4s var(--ease);
+}
+.level-card:hover .level-emblem {
+  transform: scale(1.04);
+  color: var(--accent-deep);
 }
 .level-card-head .level-num {
   display: block;
@@ -653,23 +802,26 @@ h3 {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-top: 12px;
+  margin-top: 14px;
   flex-wrap: wrap;
 }
 .mentor-hint {
   font-size: 13px;
   color: var(--ink-faint);
   max-width: 46ch;
+  font-style: italic;
 }
 .btn.ghost {
   background: transparent;
   color: var(--blue);
   border: 1px dashed var(--blue);
   font-size: 15px;
-  padding: 8px 18px;
+  padding: 9px 18px;
+  box-shadow: none;
 }
 .btn.ghost:hover {
   background: rgba(59, 77, 113, 0.06);
+  color: var(--blue);
 }
 .mentor-box {
   margin-top: 14px;
@@ -677,36 +829,151 @@ h3 {
   border-left: 3px solid var(--blue);
   border-radius: var(--radius);
   background: rgba(59, 77, 113, 0.04);
-  padding: 16px 18px;
+  padding: 18px 20px;
+  animation: rise 0.4s var(--ease) both;
 }
 .mentor-label {
-  font-size: 13px;
-  letter-spacing: 0.14em;
+  font-size: 12px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--blue);
   margin-bottom: 8px;
+  font-weight: 500;
 }
 .mentor-actions {
   display: flex;
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
-  margin-top: 6px;
+  margin-top: 8px;
 }
 .mentor-foot {
   font-size: 13px;
   color: var(--ink-faint);
   margin: 12px 0 0;
+  line-height: 1.5;
 }
 
-/* ── Карточка-сноска внутри урока (для деликатных тем) ── */
-.lesson-body .callout {
-  background: rgba(59, 77, 113, 0.06);
-  border: 1px solid var(--line);
-  border-left: 4px solid var(--blue);
-  border-radius: var(--radius);
-  padding: 14px 18px;
-  margin: 24px 0;
-  font-size: 16px;
-  color: var(--ink-soft);
+/* ── Деликатное появление контента ───────────────────── */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes rise-soft {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lesson-body {
+  animation: rise 0.5s var(--ease) both;
+}
+.quiz,
+.reflection {
+  animation: rise 0.5s var(--ease) both;
+  animation-delay: 0.05s;
+}
+/* Карточки шагов на главной появляются мягким каскадом. */
+.level-card {
+  animation: rise-soft 0.55s var(--ease) both;
+}
+.level-card:nth-of-type(1) { animation-delay: 0.04s; }
+.level-card:nth-of-type(2) { animation-delay: 0.12s; }
+.level-card:nth-of-type(3) { animation-delay: 0.2s; }
+.sozo-meaning {
+  animation: rise-soft 0.5s var(--ease) both;
+}
+
+/* ── Мобильная версия ────────────────────────────────── */
+@media (max-width: 640px) {
+  body {
+    font-size: 17px;
+  }
+  .app {
+    padding: 0 18px 88px;
+  }
+  .site-header {
+    padding: 22px 0 18px;
+    margin-bottom: 30px;
+  }
+  .header-progress {
+    text-align: left;
+  }
+  .header-progress .bar {
+    width: 140px;
+  }
+  .sozo-meaning {
+    padding: 18px 20px 18px 22px;
+  }
+  .sozo-word {
+    font-size: 22px;
+  }
+  .lead {
+    font-size: 19px;
+  }
+  .level-card {
+    padding: 22px 20px;
+  }
+  .level-card h2 {
+    font-size: 25px;
+  }
+  .level-emblem {
+    width: 56px;
+    height: 56px;
+  }
+  .lesson-body {
+    font-size: 18px;
+  }
+  .lesson-body h1 {
+    font-size: 31px;
+  }
+  .lesson-body > p:first-of-type {
+    font-size: 19px;
+  }
+  .lesson-body h2 {
+    font-size: 23px;
+  }
+  .lesson-body blockquote {
+    font-size: 20px;
+  }
+  .quiz,
+  .reflection {
+    padding: 24px 20px;
+  }
+  /* Тач-цели крупнее, навигация — в колонку и на всю ширину. */
+  .lesson-row {
+    padding: 13px 8px;
+  }
+  .lesson-nav {
+    flex-direction: column-reverse;
+  }
+  .lesson-nav .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ── Уважение к настройке «меньше движения» ──────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+  }
 }
