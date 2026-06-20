@@ -1040,6 +1040,24 @@ h3 {
   color: var(--ink-soft);
 }
 
+/* ── Блок молитвы (страница «Первый шаг к Богу») ─────── */
+.lesson-body .prayer {
+  margin: 24px 0;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--gold);
+  border-radius: var(--radius);
+  background: var(--gold-soft);
+  padding: 20px 24px;
+}
+.lesson-body .prayer p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.45;
+  font-style: italic;
+  color: var(--ink);
+}
+
 /* ── Бейдж «Шаг пройден» на главной ──────────────────── */
 .step-badge {
   display: inline-flex;

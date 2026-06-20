@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import LessonView from "./components/LessonView";
 import About from "./components/About";
 import Help from "./components/Help";
+import FirstStep from "./components/FirstStep";
 import AccountBar from "./components/AccountBar";
 import BrandMark from "./components/BrandMark";
 import FontSizeControl from "./components/FontSizeControl";
@@ -43,6 +44,7 @@ function Footer() {
     <footer className="footer">
       <nav className="footer-links">
         <Link to="/about">О курсе</Link>
+        <Link to="/first-step">Первый шаг к Богу</Link>
         <Link to="/help" className="footer-help">
           Если вам тяжело
         </Link>
@@ -87,6 +89,7 @@ export default function App() {
           <Route path="/lesson/:lessonId" element={<LessonView />} />
           <Route path="/about" element={<About />} />
           <Route path="/help" element={<Help />} />
+          <Route path="/first-step" element={<FirstStep />} />
           <Route path="*" element={<Home />} />
         </Routes>
         <Footer />
