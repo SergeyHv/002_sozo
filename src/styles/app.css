@@ -1,0 +1,712 @@
+:root {
+  /* Палитра SOZO — спокойная «исцеляющая» зелёно-бирюзовая,
+     родственная синему «Ковчега спасения», но со своим характером. */
+  --bg: #eef2f1;
+  --bg-raised: #f8fbfa;
+  --ink: #1d2a28;
+  --ink-soft: #45544f;
+  --ink-faint: #7e8c87;
+  --line: #d4e0dc;
+  --accent: #2f6f6a; /* основной зелёно-бирюзовый */
+  --accent-deep: #245752;
+  --gold: #b08828;
+  --blue: #3b4d71; /* связь с «Ковчегом спасения» — для блоков размышления */
+  --ok: #3d6b4a;
+  --locked: #a7b4af;
+  --shadow: 0 1px 2px rgba(29, 42, 40, 0.06), 0 8px 28px rgba(29, 42, 40, 0.08);
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Spectral", Georgia, serif;
+
+  --radius: 4px;
+  --maxw: 760px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--bg);
+  /* лёгкая бумажная текстура из градиентов */
+  background-image: radial-gradient(
+      circle at 20% 10%,
+      rgba(47, 111, 106, 0.05),
+      transparent 40%
+    ),
+    radial-gradient(circle at 85% 90%, rgba(36, 87, 82, 0.05), transparent 45%);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+
+.app {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 24px 96px;
+}
+
+/* ── Шапка ───────────────────────────────────────────── */
+.site-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 28px 0 22px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+.brand {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+}
+.brand small {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-top: 2px;
+}
+.brand a {
+  color: inherit;
+}
+.brand a:hover {
+  text-decoration: none;
+}
+.header-progress {
+  font-size: 14px;
+  color: var(--ink-soft);
+  text-align: right;
+}
+.bar {
+  width: 160px;
+  height: 6px;
+  background: var(--line);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+.bar > span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--accent));
+  transition: width 0.4s ease;
+}
+
+/* ── Логотип-монограмма в шапке ──────────────────────── */
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: inherit;
+}
+.brand-link:hover {
+  text-decoration: none;
+}
+.brand-logo {
+  width: 52px;
+  height: 52px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  color: #f4faf8;
+  background: var(--accent);
+  border-radius: 12px;
+}
+.brand-text {
+  display: block;
+  line-height: 1.05;
+}
+@media (max-width: 600px) {
+  .brand-logo {
+    width: 42px;
+    height: 42px;
+  }
+  .brand {
+    font-size: 26px;
+  }
+}
+
+/* ── Блок значения слова σώζω ────────────────────────── */
+.sozo-meaning {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--bg-raised);
+  box-shadow: var(--shadow);
+  padding: 18px 22px;
+  margin: 0 0 36px;
+}
+.sozo-word {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  color: var(--accent-deep);
+  margin-bottom: 4px;
+}
+.sozo-meaning p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 16px;
+}
+
+/* ── Главная: список шагов ───────────────────────────── */
+.lead {
+  font-size: 20px;
+  color: var(--ink-soft);
+  max-width: 62ch;
+  margin: 0 0 28px;
+}
+
+.level-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 26px 28px;
+  margin-bottom: 22px;
+}
+.level-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 4px;
+}
+.level-num {
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--accent);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.level-card h2 {
+  font-size: 27px;
+  margin: 0;
+}
+.audience {
+  display: inline-block;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--accent-deep);
+  background: rgba(47, 111, 106, 0.1);
+  padding: 2px 10px;
+  border-radius: 99px;
+  margin: 8px 0 2px;
+}
+.level-card p.desc {
+  color: var(--ink-soft);
+  margin: 10px 0 18px;
+}
+
+.module {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  margin-top: 16px;
+}
+.module h3 {
+  font-size: 20px;
+  margin: 0 0 4px;
+}
+.module .mdesc {
+  font-size: 15px;
+  color: var(--ink-faint);
+  margin: 0 0 12px;
+}
+
+.lesson-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.lesson-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px dotted var(--line);
+}
+.lesson-row:last-child {
+  border-bottom: none;
+}
+.lesson-row .marker {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 99px;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+  border: 1.5px solid var(--line);
+  color: var(--ink-faint);
+}
+.lesson-row.passed .marker {
+  background: var(--ok);
+  border-color: var(--ok);
+  color: #fff;
+}
+.lesson-row.locked .marker {
+  color: var(--locked);
+}
+.lesson-row .ltitle {
+  flex: 1;
+}
+.lesson-row.locked .ltitle {
+  color: var(--locked);
+}
+.lesson-row .score {
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+.lesson-row.locked {
+  cursor: default;
+}
+
+/* ── Урок ────────────────────────────────────────────── */
+.crumbs {
+  font-size: 14px;
+  color: var(--ink-faint);
+  margin-bottom: 18px;
+}
+.lesson-body {
+  font-size: 19px;
+}
+.lesson-body h1 {
+  font-size: 38px;
+  margin: 0 0 24px;
+}
+.lesson-body h2 {
+  font-size: 26px;
+  margin: 36px 0 12px;
+}
+.lesson-body h3 {
+  font-size: 21px;
+  margin: 28px 0 8px;
+}
+.lesson-body p {
+  margin: 0 0 16px;
+}
+.lesson-body ul,
+.lesson-body ol {
+  padding-left: 1.3em;
+  margin: 0 0 16px;
+}
+.lesson-body li {
+  margin: 0 0 6px;
+}
+.lesson-body blockquote {
+  margin: 22px 0;
+  padding: 6px 0 6px 22px;
+  border-left: 3px solid var(--gold);
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.lesson-body blockquote cite {
+  display: block;
+  font-style: normal;
+  font-size: 15px;
+  color: var(--accent);
+  margin-top: 6px;
+  letter-spacing: 0.03em;
+}
+.lesson-body hr {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 32px 0;
+}
+
+/* ── Тест ────────────────────────────────────────────── */
+.quiz {
+  margin-top: 44px;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 30px;
+}
+.quiz h2 {
+  margin-top: 0;
+}
+.quiz .qtag {
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.question {
+  margin: 22px 0;
+  padding-bottom: 6px;
+}
+.question .qtext {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin-bottom: 8px;
+  cursor: pointer;
+  background: #fff;
+  transition: border-color 0.15s, background 0.15s;
+}
+.option:hover {
+  border-color: var(--gold);
+}
+.option.selected {
+  border-color: var(--accent);
+  background: rgba(47, 111, 106, 0.06);
+}
+.option.correct {
+  border-color: var(--ok);
+  background: rgba(61, 107, 74, 0.08);
+}
+.option.wrong {
+  border-color: var(--accent);
+  background: rgba(47, 111, 106, 0.1);
+}
+.option input {
+  margin-top: 4px;
+}
+.explanation {
+  font-size: 15px;
+  color: var(--ink-soft);
+  background: rgba(176, 136, 40, 0.08);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  margin-top: 8px;
+}
+.explanation b {
+  color: var(--ok);
+}
+
+.btn {
+  font-family: var(--font-body);
+  font-size: 17px;
+  border: none;
+  border-radius: var(--radius);
+  padding: 11px 26px;
+  cursor: pointer;
+  background: var(--accent);
+  color: #f4faf8;
+  letter-spacing: 0.02em;
+  transition: background 0.15s;
+}
+.btn:hover {
+  background: var(--accent-deep);
+}
+.btn:disabled {
+  background: var(--locked);
+  cursor: not-allowed;
+}
+.btn.secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+.btn.secondary:hover {
+  background: rgba(47, 111, 106, 0.06);
+}
+
+.quiz-result {
+  text-align: center;
+  padding: 12px 0 4px;
+}
+.quiz-result .score-big {
+  font-family: var(--font-display);
+  font-size: 56px;
+  line-height: 1;
+  color: var(--ink);
+}
+.quiz-result .verdict.pass {
+  color: var(--ok);
+}
+.quiz-result .verdict.fail {
+  color: var(--accent);
+}
+
+.lesson-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 40px;
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+}
+.note-locked {
+  background: rgba(47, 111, 106, 0.06);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  color: var(--ink-soft);
+  text-align: center;
+  margin-top: 40px;
+}
+
+.footer {
+  margin-top: 64px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--ink-faint);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.linklike {
+  background: none;
+  border: none;
+  color: var(--accent);
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}
+.linklike:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 17px;
+  }
+  .lesson-body h1 {
+    font-size: 31px;
+  }
+  .header-progress .bar {
+    width: 120px;
+  }
+}
+
+/* ── Размышление / самопроверка ──────────────────────── */
+.reflection {
+  margin-top: 44px;
+  background: var(--bg-raised);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--blue);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px 30px;
+}
+.reflection h2 {
+  margin-top: 4px;
+}
+.reflection .qtag {
+  color: var(--blue);
+}
+.reflection-note {
+  font-size: 15px;
+  color: var(--ink-soft);
+  background: rgba(59, 77, 113, 0.06);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  margin: 0 0 18px;
+}
+.reflection-intro {
+  color: var(--ink-soft);
+}
+.reflect-item {
+  margin: 22px 0;
+}
+.reflect-input {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  margin: 8px 0 10px;
+  resize: vertical;
+}
+.reflect-input:focus {
+  outline: none;
+  border-color: var(--blue);
+}
+.model-answer {
+  margin-top: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(176, 136, 40, 0.06);
+  padding: 14px 18px;
+}
+.model-label {
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.model-text p {
+  margin: 0 0 10px;
+}
+.model-text p:last-child {
+  margin-bottom: 0;
+}
+.model-text ul,
+.model-text ol {
+  margin: 0 0 10px;
+  padding-left: 1.3em;
+}
+.model-text blockquote {
+  margin: 10px 0;
+  padding: 2px 0 2px 16px;
+  border-left: 3px solid var(--gold);
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.rubric {
+  margin-top: 14px;
+  border-top: 1px dotted var(--line);
+  padding-top: 12px;
+}
+.rubric-title {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--ink-soft);
+}
+.rubric-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 16px;
+  padding: 5px 0;
+  cursor: pointer;
+}
+.rubric-item input {
+  margin-top: 4px;
+}
+.reflect-done {
+  color: var(--ok);
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+/* ── Эмблемы шагов (SVG) ─────────────────────────────── */
+.level-card-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 6px;
+}
+.level-emblem {
+  flex: none;
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--accent);
+  box-shadow: var(--shadow);
+}
+.level-card-head .level-num {
+  display: block;
+  margin-bottom: 2px;
+}
+.level-card-head h2 {
+  margin: 0;
+}
+
+/* ── Кнопка «Спросить наставника» ────────────────────── */
+.mentor-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.mentor-hint {
+  font-size: 13px;
+  color: var(--ink-faint);
+  max-width: 46ch;
+}
+.btn.ghost {
+  background: transparent;
+  color: var(--blue);
+  border: 1px dashed var(--blue);
+  font-size: 15px;
+  padding: 8px 18px;
+}
+.btn.ghost:hover {
+  background: rgba(59, 77, 113, 0.06);
+}
+.mentor-box {
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--blue);
+  border-radius: var(--radius);
+  background: rgba(59, 77, 113, 0.04);
+  padding: 16px 18px;
+}
+.mentor-label {
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+.mentor-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+.mentor-foot {
+  font-size: 13px;
+  color: var(--ink-faint);
+  margin: 12px 0 0;
+}
+
+/* ── Карточка-сноска внутри урока (для деликатных тем) ── */
+.lesson-body .callout {
+  background: rgba(59, 77, 113, 0.06);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--blue);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin: 24px 0;
+  font-size: 16px;
+  color: var(--ink-soft);
+}
