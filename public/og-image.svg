@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f3f7f5"/>
+      <stop offset="1" stop-color="#e6efeb"/>
+    </linearGradient>
+    <radialGradient id="wash1" cx="14%" cy="0%" r="70%">
+      <stop offset="0" stop-color="#2f6f6a" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#2f6f6a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="wash2" cx="100%" cy="100%" r="65%">
+      <stop offset="0" stop-color="#a9842c" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#a9842c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2f6f6a"/>
+      <stop offset="1" stop-color="#234f4b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- фон -->
+  <rect width="1200" height="630" fill="url(#paper)"/>
+  <rect width="1200" height="630" fill="url(#wash1)"/>
+  <rect width="1200" height="630" fill="url(#wash2)"/>
+
+  <!-- тонкая рамка -->
+  <rect x="28" y="28" width="1144" height="574" rx="18" fill="none"
+        stroke="#cdddd7" stroke-width="2"/>
+
+  <!-- бейдж с монограммой -->
+  <g transform="translate(540,96)">
+    <rect x="0" y="0" width="120" height="120" rx="28" fill="url(#badge)"/>
+    <g transform="translate(21,26)" fill="none" stroke="#f4faf8" stroke-width="4.4"
+       stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 26 C10 36 16 40 24 40 C32 40 38 36 38 26"/>
+      <path d="M10 26 L7 21"/>
+      <path d="M38 26 L41 21"/>
+      <circle cx="24" cy="16" r="4"/>
+      <path d="M24 9 L24 5"/>
+      <path d="M18 12 L15 9"/>
+      <path d="M30 12 L33 9"/>
+    </g>
+  </g>
+
+  <!-- название -->
+  <text x="600" y="330" text-anchor="middle"
+        font-family="Liberation Serif, Georgia, serif" font-weight="700"
+        font-size="132" letter-spacing="14" fill="#18221f">SOZO</text>
+
+  <!-- подзаголовок -->
+  <text x="600" y="392" text-anchor="middle"
+        font-family="Liberation Serif, Georgia, serif" font-size="38"
+        fill="#41504b">путь к свободе от созависимости</text>
+
+  <!-- разделитель -->
+  <line x1="520" y1="438" x2="680" y2="438" stroke="#a9842c" stroke-width="2"/>
+
+  <!-- греческое слово и смысл -->
+  <text x="600" y="492" text-anchor="middle"
+        font-family="Liberation Serif, Georgia, serif" font-style="italic" font-size="30"
+        letter-spacing="2" fill="#2f6f6a">σώζω — спасение · исцеление · целостность</text>
+
+  <!-- община -->
+  <text x="600" y="556" text-anchor="middle"
+        font-family="Liberation Serif, Georgia, serif" font-size="24"
+        letter-spacing="6" fill="#79877f">КОВЧЕГ СПАСЕНИЯ</text>
+</svg>
