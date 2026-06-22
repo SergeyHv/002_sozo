@@ -3,33 +3,33 @@
      Спокойная «исцеляющая» зелёно-бирюзовая, родственная синему
      «Ковчега спасения», но со своим характером. Цвет с глубиной:
      несколько оттенков чернил, тёплая бумага, сдержанные тинты. */
-  --bg: #e9efed;
-  --bg-tint: #e3ebe8;
-  --bg-raised: #fbfdfc;
-  --ink: #18221f; /* почти чёрный с зелёным подтоном */
-  --ink-soft: #41504b;
-  --ink-faint: #79877f;
-  --line: #d3e0db;
-  --line-soft: #e2ebe7;
-  --accent: #2f6f6a; /* основной зелёно-бирюзовый */
-  --accent-deep: #234f4b;
-  --accent-tint: rgba(47, 111, 106, 0.08);
-  --accent-tint-2: rgba(47, 111, 106, 0.14);
-  --gold: #a9842c; /* для акцентов Писания */
-  --gold-soft: rgba(169, 132, 44, 0.1);
-  --blue: #3b4d71; /* связь с «Ковчегом спасения» — блоки размышления */
-  --ok: #3a6647;
-  --locked: #a7b4af;
-  --shadow-sm: 0 1px 2px rgba(24, 34, 31, 0.05);
-  --shadow: 0 1px 2px rgba(24, 34, 31, 0.05), 0 10px 30px rgba(24, 34, 31, 0.07);
-  --shadow-lift: 0 2px 4px rgba(24, 34, 31, 0.06), 0 16px 40px rgba(24, 34, 31, 0.1);
+  --bg: #eef1f6;
+  --bg-tint: #e4e9f1;
+  --bg-raised: #f8fafc;
+  --ink: #1e2633;
+  --ink-soft: #4a5468;
+  --ink-faint: #8089a0;
+  --line: #d7deea;
+  --line-soft: #e6eaf2;
+  --accent: #3b4d71; /* основной navy — единство с «Ковчегом спасения» */
+  --accent-deep: #2c3b59;
+  --accent-tint: rgba(59, 77, 113, 0.08);
+  --accent-tint-2: rgba(59, 77, 113, 0.14);
+  --gold: #b08828; /* для акцентов Писания */
+  --gold-soft: rgba(176, 136, 40, 0.1);
+  --blue: #2c3b59; /* связь с «Ковчегом спасения» — блоки размышления */
+  --ok: #3d6b4a;
+  --locked: #aab2c4;
+  --shadow-sm: 0 1px 2px rgba(30, 38, 51, 0.06);
+  --shadow: 0 1px 2px rgba(30, 38, 51, 0.06), 0 8px 28px rgba(30, 38, 51, 0.08);
+  --shadow-lift: 0 2px 4px rgba(30, 38, 51, 0.07), 0 14px 36px rgba(30, 38, 51, 0.11);
 
   --font-display: "Cormorant Garamond", Georgia, serif;
   --font-body: "Spectral", Georgia, serif;
 
-  --radius: 5px;
-  --radius-lg: 10px;
-  --maxw: 720px;
+  --radius: 4px;
+  --radius-lg: 4px;
+  --maxw: 760px;
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
@@ -54,9 +54,9 @@ body {
   /* Мягкая «бумажная» атмосфера: едва уловимые световые washes,
      которые дают глубину, но не отвлекают от чтения. */
   background-image:
-    radial-gradient(900px circle at 15% -5%, rgba(47, 111, 106, 0.07), transparent 55%),
+    radial-gradient(900px circle at 15% -5%, rgba(59, 77, 113, 0.07), transparent 55%),
     radial-gradient(800px circle at 100% 8%, rgba(59, 77, 113, 0.05), transparent 50%),
-    radial-gradient(700px circle at 50% 110%, rgba(169, 132, 44, 0.05), transparent 55%);
+    radial-gradient(700px circle at 50% 110%, rgba(176, 136, 40, 0.05), transparent 55%);
   background-attachment: fixed;
   color: var(--ink);
   font-family: var(--font-body);
@@ -179,14 +179,13 @@ h3 {
   display: grid;
   place-items: center;
   color: #f4faf8;
-  background: linear-gradient(155deg, var(--accent), var(--accent-deep));
-  border-radius: 13px;
-  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  background: var(--accent);
+  border-radius: 12px;
+  box-shadow: none;
+  transition: transform 0.3s var(--ease);
 }
 .brand-link:hover .brand-logo {
   transform: translateY(-1px) rotate(-2deg);
-  box-shadow: var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 .brand-text {
   display: block;
@@ -1119,48 +1118,48 @@ body.fs-xlarge .lesson-body {
 /* ── Тёмная тема (по настройке системы) ──────────────── */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #11201d;
-    --bg-tint: #14241f;
-    --bg-raised: #1a2b27;
-    --ink: #e8efec;
-    --ink-soft: #b4c3bd;
-    --ink-faint: #859790;
-    --line: #2a3d38;
-    --line-soft: #223330;
-    --accent: #5fb1a8;
-    --accent-deep: #7cc4bc;
-    --accent-tint: rgba(95, 177, 168, 0.12);
-    --accent-tint-2: rgba(95, 177, 168, 0.2);
+    --bg: #161c27;
+    --bg-tint: #191f2b;
+    --bg-raised: #202838;
+    --ink: #e9edf5;
+    --ink-soft: #b8c0d4;
+    --ink-faint: #8893ad;
+    --line: #2e3850;
+    --line-soft: #262f44;
+    --accent: #7c92c4;
+    --accent-deep: #9aacd6;
+    --accent-tint: rgba(124, 146, 196, 0.12);
+    --accent-tint-2: rgba(124, 146, 196, 0.2);
     --gold: #d4b061;
     --gold-soft: rgba(212, 176, 97, 0.12);
-    --blue: #9aaedb;
+    --blue: #9aacd6;
     --ok: #6cae7d;
-    --locked: #596b65;
+    --locked: #5c6478;
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px rgba(0, 0, 0, 0.4);
     --shadow-lift: 0 2px 4px rgba(0, 0, 0, 0.35), 0 18px 44px rgba(0, 0, 0, 0.5);
   }
   body {
     background-image:
-      radial-gradient(900px circle at 15% -5%, rgba(95, 177, 168, 0.08), transparent 55%),
+      radial-gradient(900px circle at 15% -5%, rgba(124, 146, 196, 0.08), transparent 55%),
       radial-gradient(800px circle at 100% 8%, rgba(154, 174, 219, 0.06), transparent 50%),
       radial-gradient(700px circle at 50% 110%, rgba(212, 176, 97, 0.05), transparent 55%);
   }
   .option,
   .reflect-input {
-    background: #14241f;
+    background: #191f2b;
   }
   .level-emblem {
-    background: radial-gradient(circle at 35% 30%, #21332e, #1a2b27);
+    background: radial-gradient(circle at 35% 30%, #262f40, #202838);
   }
   .btn {
-    color: #0e1c19;
+    color: #10141d;
   }
   .btn.secondary {
     color: var(--accent);
   }
   .brand-logo {
-    color: #eafaf6;
+    color: #eef1f6;
   }
 }
 

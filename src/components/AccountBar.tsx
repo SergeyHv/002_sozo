@@ -28,14 +28,14 @@ const btn: React.CSSProperties = {
   padding: "6px 14px",
   border: "none",
   borderRadius: 4,
-  background: "var(--accent, #2f6f6a)",
+  background: "var(--accent, #3b4d71)",
   color: "#fff",
   cursor: "pointer",
 };
 const link: React.CSSProperties = {
   background: "none",
   border: "none",
-  color: "var(--accent, #2f6f6a)",
+  color: "var(--accent, #3b4d71)",
   cursor: "pointer",
   font: "inherit",
   padding: 0,
@@ -43,7 +43,7 @@ const link: React.CSSProperties = {
 };
 const linkDanger: React.CSSProperties = {
   ...link,
-  color: "var(--accent-deep, #245752)",
+  color: "var(--accent-deep, #2c3b59)",
 };
 
 export default function AccountBar() {
