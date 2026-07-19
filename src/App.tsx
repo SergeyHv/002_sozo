@@ -8,6 +8,7 @@ import FirstStep from "./components/FirstStep";
 import AccountBar from "./components/AccountBar";
 import BrandMark from "./components/BrandMark";
 import FontSizeControl from "./components/FontSizeControl";
+import ViewCounter from "./components/ViewCounter";
 import { supabase, authEnabled } from "./lib/supabase";
 import { initSync } from "./lib/sync";
 import { overallProgress, resetProgress } from "./lib/progress";
@@ -58,6 +59,7 @@ function Footer() {
         </button>
       </nav>
       <FontSizeControl />
+      <ViewCounter />
       <span className="footer-mark">SOZO · Ковчег спасения</span>
     </footer>
   );

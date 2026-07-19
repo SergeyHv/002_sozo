@@ -990,6 +990,11 @@ h3 {
 .footer-mark {
   letter-spacing: 0.06em;
 }
+.view-counter {
+  font-size: 13px;
+  color: var(--ink-faint);
+  letter-spacing: 0.02em;
+}
 
 /* ── Верх урока: хлебные крошки + печать ─────────────── */
 .lesson-top {
@@ -1179,6 +1184,7 @@ body.fs-xlarge .lesson-body {
   .mentor-box,
   .a11y-bar,
   .print-btn,
+  .view-counter,
   .quiz button,
   .reflection button,
   .reflect-input {
